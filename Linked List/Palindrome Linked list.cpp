@@ -19,6 +19,8 @@ bool isPalindrome(ListNode* head) {
   }
   return true ; */
 
+  tortoise n hare
+
 
   
 
