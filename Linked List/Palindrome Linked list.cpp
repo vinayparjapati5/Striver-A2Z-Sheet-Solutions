@@ -21,7 +21,46 @@ bool isPalindrome(ListNode* head) {
 
   tortoise n hare
 
+  
+        if(head==NULL || head->next==NULL) return true;
+        ListNode*slow = head, *fast = head;
+
+        while(fast->next!=NULL && fast->next->next!=NULL){ // finding first middle of linked list 
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode*newhead = reverseLL(slow->next);
+
+        ListNode*first = head;
+        ListNode*second = newhead;
+
+        while(second!=NULL){
+            if(first->val!=second->val){
+                reverseLL(newhead);
+                return false;
+            }
+            first = first->next;
+            second = second->next;
+        }
+        reverseLL(newhead);
+        return true;
+
+  
+
 
   
 
 }
+
+
+ListNode* reverseLL(ListNode*head){
+
+        ListNode*temp = head, *prev = nullptr;
+        while(temp){
+        ListNode*front = temp->next;
+        temp->next = prev;
+        prev = temp;
+        temp = front;
+        }
+        return prev;
+    }
