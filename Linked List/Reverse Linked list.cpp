@@ -16,7 +16,7 @@ ListNode* reverseList(ListNode* head) {
             temp=temp->next;
         }
         return head; 
-
+==============================================================================
         //iterative 
 
         ListNode*temp = head, *prev = nullptr;
@@ -28,7 +28,7 @@ ListNode* reverseList(ListNode* head) {
             temp = front;
         }
         return prev; 
-
+===================================================================
         //Recursive Solution
 
         if(head==NULL || head->next == NULL){
