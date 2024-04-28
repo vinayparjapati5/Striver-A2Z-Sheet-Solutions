@@ -50,3 +50,75 @@
         return prev;
         
     }
+
+===================================================================================
+
+ 
+    ListNode* reverseLL(ListNode*head){
+        ListNode*temp = head, *prev = nullptr;
+        ListNode*front = temp->next;
+         
+        while(temp!=NULL){
+            ListNode*front = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = front;
+        }
+        return prev;
+    }
+
+    int lengthLL(ListNode*head){
+        ListNode*temp = head;
+        int cnt = 0;
+        while(temp){
+            cnt++;
+            temp = temp->next;
+        }
+        return cnt;
+    }
+
+    ListNode* getKthNode(ListNode * temp, int k){
+        k-=1;
+
+        while(temp!=NULL && k>0){
+            k--;
+            temp = temp->next;
+        }
+        return temp;
+
+    }
+    ListNode* reverseKGroup(ListNode* head, int k) {
+
+        ListNode*temp = head;
+        ListNode*prevNode = NULL;
+
+        while(temp!=NULL){
+            ListNode*KthNode = getKthNode(temp,k);
+        
+
+            if(KthNode ==NULL){
+                if(prevNode){
+                    prevNode ->next = temp;
+                }
+                break;
+            }
+        
+
+           ListNode* nextNode = KthNode->next;
+            KthNode->next = NULL;
+
+            reverseLL(temp);
+
+            if(temp==head){
+                head = KthNode; //for first k
+
+            }
+            else{
+                prevNode->next = KthNode;
+            }
+            prevNode = temp;
+            temp = nextNode;
+        }
+    
+        return head;
+    }
